@@ -1,0 +1,373 @@
+@font-face {
+    font-family: 'sd_eb';
+    src: url('../font/AppleSDGothicNeoEB.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'sd_ol';
+    src: url('../font/AppleSDGothicNeoL.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'sd_ob';
+    src: url('../font/AppleSDGothicNeoB.ttf') format('truetype');
+}
+
+@keyframes float_up {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-35px); /* 위로 떠오르는 거리 조절 */
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes float_down {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(15px); /* 위로 떠오르는 거리 조절 */
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes float_left_right {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(15px);
+    }
+    100% {
+        transform: translateX(0px);
+    }
+}
+
+@keyframes rotate_image{
+    0% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(-5deg);
+    }
+
+}
+
+/* 애니메이션 키프레임 */
+@keyframes rolling {
+    0% {
+        transform: translateY(0vh);
+    }
+    100% {
+        transform: translateY(-670%);
+    }
+}
+
+/*폰트 세팅 */
+html {
+    scroll-behavior: smooth;
+}
+body {
+    overflow: hidden;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+    /* 드래그 불가능 코드 */
+
+    background-color: #F2E8E4;
+    color: #D97652;
+    font-family: sd_ol;
+
+    white-space: nowrap; /*줄 밀림 방지*/
+  }
+
+  header,main,aside,section {
+    margin: 0px;
+    padding: 0px;
+  }
+
+ui,li {
+    list-style-type: none; /* 기본 목록 스타일 제거 */
+    padding: 0; /* 기본 패딩 제거 */
+    margin: 0; /* 기본 마진 제거 */
+}
+
+a{
+    cursor: pointer;
+    text-decoration: none; 
+}
+
+#floating_bar { /*페이지 이동 플로팅*/
+    position: fixed;
+    top: 50%; 
+    transform: translateY(-50%); 
+    right: 1vw; /* 오른쪽에서 약간의 여백을 둠 */
+    width: 2vw;
+    height: 13vh;
+    background-color: #f3cdc3;
+    border-radius: 50px;
+    display: grid;
+    place-items: center;
+    padding-top: 1vw;
+    padding-bottom: 1vw;
+    z-index: 1;
+}
+
+.floating_bar_button {
+    border-radius: 50%;
+    width: 0.7vw;
+    height: 0.7vw;
+    border: #D97652 4px solid;
+    background-color: #D97652;
+    transition: background-color 0.3s;
+}
+
+.floating_bar_button:focus {
+    width: 0.9vw;
+    height: 0.9vw;
+    background-color: #f3cdc3;
+}
+
+@media screen{ /* 데스크톱 */
+
+
+    body{
+        margin: 0;
+    }
+
+    .grid_container { /*전체 그리드*/
+        grid-template-columns: 1fr 1fr;
+        display: grid;
+        grid-template-rows: repeat(3,100vh);
+        gap: 0;
+        
+    }
+    
+    .grid_item {/*그리드 아이템*/
+    }
+    
+
+    #choonsik_main_pic { /*춘식이 메인 사진*/
+        width: 50%; 
+        position: absolute; 
+        bottom: 0vw;
+    }
+
+    .index_title { /*헤더 텍스트 공간*/
+        position: absolute;
+        left: 50%;
+        text-align: center;
+        bottom: 2vh;
+        right: 0;
+    }
+
+    .index_title_first_text { /*자기소개서*/ 
+        font-size: 3.5vw; 
+        font-family: sd_ob;
+    }
+
+    .index_title_second_text { /*안녕하십니까~꿈꾸는, 축식이 뒤 '입니다'.*/ /* 안냥하십니까 ~ 코딩을 */
+        font-size: 2vw;
+    }
+    
+    #index_title_main_text { /*춘식이*/
+        font-size: 11vw; 
+        font-family: sd_eb;
+    }
+
+    #sweetpotato_item { /*고구마~*/
+        width: 12vw;
+        margin-left: 10vw;
+        animation: float_up 3s ease-in-out infinite; /* 애니메이션 적용 */
+    }
+
+    #info_sns_grid_container { /*2페이지 1쪽 그리드*/
+        display: grid;
+        height: 100vh;
+        grid-template-rows: 10vh 20vh 10vh 20vh 15vh 20vh;
+        align-items: center;
+    }
+
+    .info_sns_grid_item { /* 그리드 아이템이자 자식 flex요소들의 grid*/
+    }
+
+    .info_sns_flex_container { /*2페이지 각 셀*/
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .info_sns_title { /*info,sns 미니 제목*/
+        font-size: 3.5vw; 
+        font-family: sd_eb;
+    }
+
+    .info_list_flex_item { /*인포 리스트*/
+        flex-direction: row;
+    }
+
+    .info_list_content_title { /*인포 리스트 각 항목 굵은 글씨*/
+        font-size: 2.5vw; 
+        font-family: sd_ob;
+    }
+    .sns_items { /*SNS 아이콘 리스트*/
+        width: 17vh;
+    }
+
+    #bio_grid_container { /*2페이지 15:25:60 그리드 컨테이너*/
+        display: grid;
+        height: 100vh;
+        grid-template-rows: 10vh 20vh 70vh;
+        padding-left: 40px;
+        align-items: center;
+    }
+
+    .bio_grid_item { /* bio 그리드 상자 */
+    }
+    
+
+    #bio_choosik_pic { /*2페이지 춘식이*/
+        height: 70vh;        
+    }
+
+    .zoom_box { /*커서 올리면 확대됩니다.*/
+        overflow: visible;
+    }
+
+    .zoom_box img{
+        object-fit: cover;
+        transform:scale(1.0);
+        transition: transform .2s;
+    }
+
+    .zoom_box img:hover{
+        transform: scale(1.2);
+        transition: transform .5s;
+    }
+
+    #career_grid_container { /*2페이지 15:85 그리드 컨테이너*/
+        display: grid;
+        height: 100vh;
+        grid-template-rows: 15vh 85vh;
+        padding-left: 50px;
+        align-items: center;
+    }
+
+    #career_choonsik { /*커리어 페이지 춘식이 사진*/
+        height: 80vh;
+        animation: rotate_image 4s ease-in-out infinite; /* 기웃 기웃 애니메이션 적용 */
+    }
+
+    #career_list_position_center { /*커리어 리스트 플렉스 박스 가운데 위치 조정*/
+        display: grid;
+        place-items: center;
+    }
+
+    #career_list_flex_container { /*커리어 리스트 플렉스 컨테이너*/      
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 80vh;
+        margin-top: 10vh;
+        gap: 1vw;
+        
+        overflow: hidden; /* 범위를 넘는 요소 숨김 */
+        position: relative; /* absolute 위치를 위한 부모로 설정 */
+
+    }
+
+    .career_list_flex_item { /*나열되는 플렉스 행 들*/
+        display: flex;
+        animation: rolling 15s linear infinite; /* 롤링 배너 애니메이션 적용 */
+        transition: opacity 0.00001s ease;
+    }
+    
+    #career_list_flex_container:hover .career_list_flex_item {
+        animation-play-state: paused;
+    }
+
+    .career_list_item_grid_container { /*한 행의 사진, 글을 나눠줄 그리드*/
+        width: 35vw;
+        grid-template-columns: 3fr 7fr;
+        display: grid;
+        align-items: center;
+    }
+
+    #pi_tech_chart_bar_a { /*도넛 차트*/
+        display: grid;
+        background: conic-gradient(#F2E8E4 0deg, #D97652 0deg); 
+        border-radius: 50%;
+        width: 8vw;
+        height: 8vw;
+        place-items: center;
+    }
+
+    #pi_tech_chart_bar_b { /*도넛 차트*/
+        display: grid;
+        background: conic-gradient(#F2E8E4 50deg, #D97652 50deg); 
+        border-radius: 50%;
+        width: 8vw;
+        height: 8vw;
+        place-items: center;
+    }
+
+    #pi_tech_chart_bar_c { /*도넛 차트*/
+        display: grid;
+        background: conic-gradient(#F2E8E4 120deg, #D97652 120deg); 
+        border-radius: 50%;
+        width: 8vw;
+        height: 8vw;
+        place-items: center;
+    }
+
+    #pi_tech_chart_bar_d { /*도넛 차트*/
+        display: grid;
+        background: conic-gradient(#F2E8E4 20deg, #D97652 20deg); 
+        border-radius: 50%;
+        width: 8vw;
+        height: 8vw;
+        place-items: center;
+    }
+
+    #pi_tech_chart_bar_e { /*도넛 차트*/
+        display: grid;
+        background: conic-gradient(#F2E8E4 40deg, #D97652 40deg); 
+        border-radius: 50%;
+        width: 8vw;
+        height: 8vw;
+        place-items: center;
+    }
+
+    .pi_tech_chart_bar_inside {
+        display: grid;
+        background-color: #F2E8E4;
+        border-radius: 50%;
+        width: 4vw;
+        height: 4vw;
+        place-items: center;
+        font-family: sd_ob;
+        font-size: 1vw;
+    }
+
+    #visible { /*마우스를 올려놓으면 애니메이션이 멈춥니다. 보여질지 아닐지, 태블릿 모바일은 안보이게 해야함.*/
+        visibility: visible;
+    }
+
+    .career_list_title { 
+        font-family: sd_ob;
+        font-size: 2vw;
+    }
+    
+    .career_list_caption {
+        font-family: sd_ol;
+        font-size: 1.5vw;
+    }
+
+}
+
